@@ -1,0 +1,303 @@
+use smash::hash40;
+use smash::lib::lua_const::*;
+use smash::app::lua_bind::*;
+use smash::lua2cpp::L2CFighterCommon;
+use smash::lua2cpp::L2CFighterBase;
+use acmd::{acmd, acmd_func};
+use crate::FIGHTER_CUTIN_MANAGER_ADDR;
+use skyline::nn::ro::LookupSymbol;
+use smash::app::{self, lua_bind::*, *};
+use smash::phx::Vector3f;
+use smash::phx::Hash40;
+
+#[acmd_func(
+    battle_object_category = BATTLE_OBJECT_CATEGORY_FIGHTER, 
+    battle_object_kind = FIGHTER_KIND_JACK, 
+    animation = "catch",
+    animcmd = "game_catch")]
+pub fn jack_catch(fighter: &mut L2CFighterCommon) {
+    acmd!({
+        frame(Frame=5)
+        if(is_excute){
+        GrabModule::set_rebound(CanCatchRebound=true)
+        }
+        frame(Frame=6)
+        
+        if(is_excute){
+        CATCH(ID=0, Bone=hash40("top"), Size=8, X=0.0, Y=8.1, Z=4.5, X2=0.0, Y2=8.1, Z2=9.0, Status=FIGHTER_STATUS_KIND_CAPTURE_PULLED, Ground_or_Air=COLLISION_SITUATION_MASK_G)
+        CATCH(ID=1, Bone=hash40("top"), Size=3, X=0.0, Y=8.1, Z=2.85, X2=0.0, Y2=8.1, Z2=10.65, Status=FIGHTER_STATUS_KIND_CAPTURE_PULLED, Ground_or_Air=COLLISION_SITUATION_MASK_A)
+        
+        }
+        game_CaptureCutCommon()
+        wait(Frames=2)
+        
+        if(is_excute){
+        sv_module_access::grab(MA_MSC_CMD_GRAB_CLEAR_ALL)
+        WorkModule::on_flag(Flag=FIGHTER_STATUS_CATCH_FLAG_CATCH_WAIT)
+        GrabModule::set_rebound(CanCatchRebound=false)
+       
+        }
+
+    });
+}
+
+#[acmd_func(
+    battle_object_category = BATTLE_OBJECT_CATEGORY_FIGHTER, 
+    battle_object_kind = FIGHTER_KIND_JACK, 
+    animation = "catch_dash",
+    animcmd = "game_catchdash")]
+pub fn jack_catchdash(fighter: &mut L2CFighterCommon) {
+    acmd!({
+		frame(Frame=7)
+		if(is_excute){
+		GrabModule::set_rebound(CanCatchRebound=true)
+		}
+		frame(Frame=8)
+		
+		if(is_excute){
+		CATCH(ID=0, Bone=hash40("top"), Size=8, X=0.0, Y=6.6, Z=4.0, X2=0.0, Y2=6.6, Z2=10.6, Status=FIGHTER_STATUS_KIND_CAPTURE_PULLED, Ground_or_Air=COLLISION_SITUATION_MASK_G)
+		CATCH(ID=1, Bone=hash40("top"), Size=3, X=0.0, Y=6.6, Z=2.7, X2=0.0, Y2=6.6, Z2=11.9, Status=FIGHTER_STATUS_KIND_CAPTURE_PULLED, Ground_or_Air=COLLISION_SITUATION_MASK_A)
+		
+		}
+		game_CaptureCutCommon()
+		wait(Frames=2)
+		
+		if(is_excute){
+		sv_module_access::grab(MA_MSC_CMD_GRAB_CLEAR_ALL)
+		WorkModule::on_flag(Flag=FIGHTER_STATUS_CATCH_FLAG_CATCH_WAIT)
+		GrabModule::set_rebound(CanCatchRebound=false)
+		}
+	});
+}
+
+#[acmd_func(
+    battle_object_category = BATTLE_OBJECT_CATEGORY_FIGHTER, 
+    battle_object_kind = FIGHTER_KIND_JACK, 
+    animation = "catch_turn",
+    animcmd = "game_catchturn")]
+pub fn jack_catchturn(fighter: &mut L2CFighterCommon) {
+    acmd!({
+		frame(Frame=8)
+		if(is_excute){
+		GrabModule::set_rebound(CanCatchRebound=true)
+		}
+		frame(Frame=9)
+
+		if(is_excute){
+		CATCH(ID=0, Bone=hash40("top"), Size=8, X=0.0, Y=6.6, Z=-7.0, X2=0.0, Y2=6.6, Z2=-16.700001, Status=FIGHTER_STATUS_KIND_CAPTURE_PULLED, Ground_or_Air=COLLISION_SITUATION_MASK_G)
+		CATCH(ID=1, Bone=hash40("top"), Size=2, X=0.0, Y=6.6, Z=-5.35, X2=0.0, Y2=6.6, Z2=-18.35, Status=FIGHTER_STATUS_KIND_CAPTURE_PULLED, Ground_or_Air=COLLISION_SITUATION_MASK_A)
+		}
+		game_CaptureCutCommon()
+		wait(Frames=2)
+
+		if(is_excute){
+		sv_module_access::grab(MA_MSC_CMD_GRAB_CLEAR_ALL)
+		WorkModule::on_flag(Flag=FIGHTER_STATUS_CATCH_FLAG_CATCH_WAIT)
+		GrabModule::set_rebound(CanCatchRebound=false)
+		
+		}
+
+	});
+}
+
+#[acmd_func(
+    battle_object_category = BATTLE_OBJECT_CATEGORY_FIGHTER, 
+    battle_object_kind = FIGHTER_KIND_JACK, 
+    animation = "throw_lw",
+    animcmd = "game_throwlw")]
+pub fn jack_throwlw(fighter: &mut L2CFighterCommon) {
+    acmd!({
+        if(is_excute){
+            ATTACK_ABS(Kind=FIGHTER_ATTACK_ABSOLUTE_KIND_THROW, ID=0, Damage=8.0, Angle=80, KBG=95, FKB=0, BKB=50, Hitlag=0.0, Unk=1.0, FacingRestrict=ATTACK_LR_CHECK_F, Unk=0.0, Unk=true, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_NONE, Type=ATTACK_REGION_THROW)
+            ATTACK_ABS(Kind=FIGHTER_ATTACK_ABSOLUTE_KIND_CATCH, ID=0, Damage=3.0, Angle=361, KBG=100, FKB=0, BKB=40, Hitlag=0.0, Unk=1.0, FacingRestrict=ATTACK_LR_CHECK_F, Unk=0.0, Unk=true, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_NONE, Type=ATTACK_REGION_THROW)
+        }
+        frame(Frame=22)
+        
+        if(is_excute){
+            CHECK_FINISH_CAMERA(12.8, 0)
+        }
+        frame(Frame=23)
+        
+        if(is_excute){
+            ATK_HIT_ABS(FIGHTER_ATTACK_ABSOLUTE_KIND_THROW, hash40("throw"), 
+            WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_OBJECT),
+            WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_HIT_GROUP),
+            WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_HIT_NO))
+        }
+        frame(Frame=25)
+        FT_MOTION_RATE(FSM=0.8)
+        frame(Frame=40)
+        FT_MOTION_RATE(FSM=1)
+        rust {
+            println!("JackThrowLw");
+        }
+    });
+}
+
+#[acmd_func(
+    battle_object_category = BATTLE_OBJECT_CATEGORY_FIGHTER, 
+    battle_object_kind = FIGHTER_KIND_JACK, 
+    animation = "throw_hi",
+    animcmd = "game_throwhi")]
+    pub fn jack_throwhi(fighter: &mut L2CFighterCommon) {
+        acmd!({
+            if(is_excute){
+                ATTACK_ABS(Kind=FIGHTER_ATTACK_ABSOLUTE_KIND_THROW, ID=0, Damage=8.0, Angle=90, KBG=60, FKB=0, BKB=65, Hitlag=0.0, Unk=1.0, FacingRestrict=ATTACK_LR_CHECK_F, Unk=0.0, Unk=true, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_NONE, Type=ATTACK_REGION_THROW)
+                ATTACK_ABS(Kind=FIGHTER_ATTACK_ABSOLUTE_KIND_CATCH, ID=0, Damage=3.0, Angle=361, KBG=100, FKB=0, BKB=40, Hitlag=0.0, Unk=1.0, FacingRestrict=ATTACK_LR_CHECK_F, Unk=0.0, Unk=true, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_NONE, Type=ATTACK_REGION_THROW)
+            }
+                frame(Frame=15)
+                if(is_excute){
+                CHECK_FINISH_CAMERA(3, 10)
+            }
+                frame(Frame=16)
+                if(is_excute){
+                ATK_HIT_ABS(FIGHTER_ATTACK_ABSOLUTE_KIND_THROW, hash40("throw"),
+                WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_OBJECT), 
+                WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_HIT_GROUP), 
+                WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_HIT_NO))
+                rust {
+                    println!("JackThrowHi");
+                }
+            }
+        });
+    }
+
+
+#[acmd_func(
+    battle_object_category = BATTLE_OBJECT_CATEGORY_FIGHTER, 
+    battle_object_kind = FIGHTER_KIND_JACK, 
+    animation = "attack_air_hi",
+    animcmd = "game_attackairhi")]
+pub fn jack_upair(fighter: &mut L2CFighterCommon) {
+    acmd!({
+        frame(Frame=5)
+        if(is_excute){
+            WorkModule::on_flag(Flag=FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING)
+            ATTACK(ID=0, Part=0, Bone=hash40("kneer"), Damage=0.75, Angle=80, KBG=80, FKB=20, BKB=0, Size=6.0, X=4.7, Y=0.0, Z=0.0, X2=LUA_VOID, Y2=LUA_VOID, Z2=LUA_VOID, Hitlag=0.7, SDI=0.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_F, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=4, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_G, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_KICK, Type=ATTACK_REGION_KICK)
+            ATTACK(ID=1, Part=0, Bone=hash40("kneer"), Damage=0.75, Angle=367, KBG=100, FKB=30, BKB=0, Size=6.0, X=4.7, Y=0.0, Z=0.0, X2=LUA_VOID, Y2=LUA_VOID, Z2=LUA_VOID, Hitlag=0.7, SDI=0.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_F, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=4, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_A, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_KICK, Type=ATTACK_REGION_KICK)
+        }
+        frame(Frame=19)
+        if(is_excute){
+            AttackModule::clear_all()
+        }
+        frame(Frame=20)
+        if(is_excute){
+			if (WorkModule::is_flag(module_accessor,*FIGHTER_JACK_INSTANCE_WORK_ID_FLAG_DOYLE)==true) {
+				if (ControlModule::check_button_on(module_accessor,*CONTROL_PAD_BUTTON_ATTACK)){
+					ATTACK(ID=0, Part=0, Bone=hash40("kneer"), Damage=4.0, Angle=80, KBG=155, FKB=0, BKB=40, Size=8.0, X=4.3, Y=0.0, Z=0.0, X2=1.5, Y2=0.0, Z2=0.0, Hitlag=1.7, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_POS, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_L, SFXType=COLLISION_SOUND_ATTR_KICK, Type=ATTACK_REGION_KICK)
+					ATTACK(ID=1, Part=1, Bone=hash40("top"), Damage=8.0, Angle=80, KBG=126, FKB=0, BKB=40, Size=8.0, X=0.0, Y=20.0, Z=1.5, X2=0.0, Y2=24.0, Z2=0.0, Hitlag=1.7, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_POS, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_L, SFXType=COLLISION_SOUND_ATTR_HEAVY, Type=ATTACK_REGION_PUNCH)
+                }
+				else{
+                    ATTACK(ID=0, Part=0, Bone=hash40("kneer"), Damage=4.0, Angle=80, KBG=155, FKB=0, BKB=40, Size=8.0, X=4.3, Y=0.0, Z=0.0, X2=1.5, Y2=0.0, Z2=0.0, Hitlag=1.7, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_POS, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_L, SFXType=COLLISION_SOUND_ATTR_KICK, Type=ATTACK_REGION_KICK)
+					ATTACK(ID=1, Part=1, Bone=hash40("top"), Damage=8.0, Angle=80, KBG=126, FKB=0, BKB=40, Size=8.0, X=0.0, Y=20.0, Z=1.5, X2=0.0, Y2=24.0, Z2=0.0, Hitlag=1.7, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_POS, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_L, SFXType=COLLISION_SOUND_ATTR_HEAVY, Type=ATTACK_REGION_PUNCH)    
+				}
+			}
+			else {
+	           ATTACK(ID=0, Part=0, Bone=hash40("kneer"), Damage=4.0, Angle=80, KBG=155, FKB=0, BKB=50, Size=8.0, X=4.8, Y=0.0, Z=0.0, X2=2.5, Y2=0.0, Z2=0.0, Hitlag=1.0, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_POS, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_M, SFXType=COLLISION_SOUND_ATTR_KICK, Type=ATTACK_REGION_KICK)
+			}
+        }
+        frame(Frame=22)
+        if(is_excute){
+            AttackModule::clear_all()
+        }
+        frame(Frame=40)
+        if(is_excute){
+        WorkModule::off_flag(Flag=FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING)
+        }
+    });
+
+}
+
+
+pub fn install() {
+    acmd::add_hooks!(
+        jack_catch,
+        jack_catchdash,
+        jack_catchturn,
+        jack_throwlw,
+        jack_throwhi,
+        jack_upair
+        //jack_dair
+    );
+}   
+
+
+#[acmd_func(
+    battle_object_category = BATTLE_OBJECT_CATEGORY_FIGHTER, 
+    battle_object_kind = FIGHTER_KIND_JACK, 
+    animation = "special_hi_throw",
+    animcmd = "game_specialhithrow")]
+pub fn jack_specialhithrow(fighter: &mut L2CFighterCommon) {
+    acmd!
+    ({
+        if(is_excute){
+            ArticleModule::generate_article(FIGHTER_JACK_GENERATE_ARTICLE_WIREROPE)
+            as_hash__const(FIGHTER_JACK_GENERATE_ARTICLE_WIREROPE, hash40("special_hi_throw"))
+            ArticleModule::change_motion()
+            ATTACK_ABS(Kind=FIGHTER_ATTACK_ABSOLUTE_KIND_THROW, ID=0, Damage=12.0, Angle=80, KBG=40, FKB=0, BKB=75, Hitlag=0.0, Unk=1.0, FacingRestrict=ATTACK_LR_CHECK_F, Unk=0.0, Unk=true, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_NONE, Type=ATTACK_REGION_THROW)
+            }
+            frame(Frame=4)
+            if(is_excute){
+            CHECK_FINISH_CAMERA(-20, 10)
+            }
+            frame(Frame=6)
+            if(is_excute){
+            ATK_HIT_ABS(FIGHTER_ATTACK_ABSOLUTE_KIND_THROW, hash40("throw"), 
+            WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_OBJECT), 
+            WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_HIT_GROUP), 
+            WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_HIT_NO))
+            }
+            frame(Frame=8)
+            if(is_excute){
+            ArticleModule::remove_exist(FIGHTER_JACK_GENERATE_ARTICLE_WIREROPE)
+            }            
+
+    });
+}
+
+#[acmd_func(
+    battle_object_category = BATTLE_OBJECT_CATEGORY_FIGHTER, 
+    battle_object_kind = FIGHTER_KIND_JACK, 
+    animation = "special_air_hi_throw",
+    animcmd = "game_specialairhithrow")]
+pub fn jack_specialairhithrow(fighter: &mut L2CFighterCommon) {
+    acmd!
+    ({
+        if(is_excute){
+            ArticleModule::generate_article(FIGHTER_JACK_GENERATE_ARTICLE_WIREROPE)
+            as_hash__const(FIGHTER_JACK_GENERATE_ARTICLE_WIREROPE, hash40("special_hi_throw"))
+            ArticleModule::change_motion()
+            ATTACK_ABS(Kind=FIGHTER_ATTACK_ABSOLUTE_KIND_THROW, ID=0, Damage=12.0, Angle=80, KBG=40, FKB=0, BKB=75, Hitlag=0.0, Unk=1.0, FacingRestrict=ATTACK_LR_CHECK_F, Unk=0.0, Unk=true, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_NONE, Type=ATTACK_REGION_THROW)
+            }
+            frame(Frame=4)
+            if(is_excute){
+            CHECK_FINISH_CAMERA(-20, 10)
+            }
+            frame(Frame=6)
+            if(is_excute){
+            ATK_HIT_ABS(FIGHTER_ATTACK_ABSOLUTE_KIND_THROW, hash40("throw"), 
+            WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_OBJECT), 
+            WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_HIT_GROUP), 
+            WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_HIT_NO))
+            }
+            frame(Frame=8)
+            if(is_excute){
+            ArticleModule::remove_exist(FIGHTER_JACK_GENERATE_ARTICLE_WIREROPE)
+            }
+
+    });
+
+
+rust 
+                    {
+                        let vector = smash::phx::Vector2f{x: 1.0, y: -1.0};
+                        let top_hash = smash::phx::Hash40::new("knife");
+                        AttackModule::set_vec_target_pos(module_accessor, 1, top_hash, &vector, 1 as u32, false);
+                        
+                        let vector = smash::phx::Vector2f{x: 1.0, y: -1.0};
+                        let top_hash = smash::phx::Hash40::new("knife");
+                        AttackModule::set_vec_target_pos(module_accessor, 2, top_hash, &vector, 1 as u32, false);
+                    }
+                   ATTACK(ID=1, Part=0, Bone=hash40("knife"), Damage=8.0, Angle=38, KBG=60, FKB=0, BKB=40, Size=2.5, X=0.0, Y=-1.0, Z=0.0, X2=LUA_VOID, Y2=LUA_VOID, Z2=LUA_VOID, Hitlag=0.8, SDI=0.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_F, SetWeight=false, ShieldDamage=0, Trip=1.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_A, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_cutup"), SFXLevel=ATTACK_SOUND_LEVEL_M, SFXType=COLLISION_SOUND_ATTR_CUTUP, Type=ATTACK_REGION_SWORD)
+                    ATTACK(ID=2, Part=0, Bone=hash40("knife"), Damage=8.0, Angle=38, KBG=60, FKB=0, BKB=40, Size=3.0, X=0.0, Y=2.5, Z=0.0, X2=LUA_VOID, Y2=LUA_VOID, Z2=LUA_VOID, Hitlag=0.8, SDI=0.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_F, SetWeight=false, ShieldDamage=0, Trip=1.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_A, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_cutup"), SFXLevel=ATTACK_SOUND_LEVEL_M, SFXType=COLLISION_SOUND_ATTR_CUTUP, Type=ATTACK_REGION_SWORD)
+   
