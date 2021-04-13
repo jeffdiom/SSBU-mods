@@ -97,7 +97,6 @@ pub fn eflame_catchturn(fighter: &mut L2CFighterCommon) {
     });
 }
 
-
 pub fn install() 
 {
     acmd::add_hooks!

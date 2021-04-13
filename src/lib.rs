@@ -29,6 +29,7 @@ mod toonlink;
 mod fox;
 mod eflame;
 mod elight;
+mod pitb;
 mod custom;
 
 
@@ -64,5 +65,6 @@ pub fn main()
     fox::install();
     eflame::install();
     elight::install();
+    pitb::install();
     custom::install();
 }
