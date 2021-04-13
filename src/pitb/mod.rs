@@ -50,7 +50,7 @@ pub fn pitb_nair(fighter: &mut L2CFighterCommon) {
         }
         if(is_excute)
         {
-            ATTACK(ID=0, Part=1, Bone=hash40("top"), Damage=6.0, Angle=65, KBG=100, FKB=0, BKB=60, Size=12.0, X=0.0, Y=9.5, Z=3.0, X2=LUA_VOID, Y2=LUA_VOID, Z2=LUA_VOID, Hitlag=1.8, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_F, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_cutup"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_CUTUP, Type=ATTACK_REGION_PALUTENA)
+            ATTACK(ID=0, Part=1, Bone=hash40("top"), Damage=6.0, Angle=60, KBG=100, FKB=0, BKB=60, Size=12.0, X=0.0, Y=9.5, Z=3.0, X2=LUA_VOID, Y2=LUA_VOID, Z2=LUA_VOID, Hitlag=1.8, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_F, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_cutup"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_CUTUP, Type=ATTACK_REGION_PALUTENA)
         }
         wait(Frames=1)
         if(is_excute)
@@ -97,7 +97,7 @@ pub fn pitb_dair(fighter: &mut L2CFighterCommon) {
             MotionModule::set_rate(1.25)
             AttackModule::clear_all()
         }
-        frame(Frame=36)
+        frame(Frame=34)
         if(is_excute)
         {
         WorkModule::off_flag(Flag=FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING)
@@ -214,12 +214,55 @@ pub fn pitb_upair(fighter: &mut L2CFighterCommon) {
         {
         AttackModule::clear_all()
         }
-        frame(Frame=37)
+        frame(Frame=36)
         if(is_excute)
         {
         WorkModule::off_flag(Flag=FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING)
         }
 
+    });
+}
+
+#[acmd_func(
+    battle_object_category = BATTLE_OBJECT_CATEGORY_FIGHTER, 
+    battle_object_kind = FIGHTER_KIND_PITB, 
+    animation = "attack_air_f",
+    animcmd = "game_attackairf")]
+pub fn pitb_fair(fighter: &mut L2CFighterCommon) {
+    acmd!
+    ({
+        if(is_excute){
+            WorkModule::on_flag(Flag=FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING)
+            }
+            frame(Frame=11)
+            for(2 Iterations)
+            {
+                if(is_excute)
+                {
+                    ATTACK(ID=0, Part=0, Bone=hash40("top"), Damage=3.0, Angle=367, KBG=48, FKB=0, BKB=20, Size=4.6, X=0.0, Y=5.0, Z=10.0, X2=0.0, Y2=5.0, Z2=19.0, Hitlag=0.8, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_F, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_cutup"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_CUTUP, Type=ATTACK_REGION_PALUTENA)
+                }
+                wait(Frames=2)
+                if(is_excute)
+                {
+                    AttackModule::clear_all()
+                }
+                wait(Frames=1)
+            }
+            frame(Frame=18)
+            if(is_excute)
+            {
+            ATTACK(ID=0, Part=0, Bone=hash40("top"), Damage=6.0, Angle=361, KBG=147, FKB=0, BKB=20, Size=6.0, X=0.0, Y=5.0, Z=11.0, X2=0.0, Y2=5.0, Z2=19.0, Hitlag=2.2, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_F, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_cutup"), SFXLevel=ATTACK_SOUND_LEVEL_L, SFXType=COLLISION_SOUND_ATTR_CUTUP, Type=ATTACK_REGION_PALUTENA)
+            }
+            wait(Frames=2)
+            if(is_excute)
+            {
+            AttackModule::clear_all()
+            }
+            frame(Frame=28)
+            if(is_excute)
+            {
+            WorkModule::off_flag(Flag=FIGHTER_STATUS_ATTACK_AIR_FLAG_ENABLE_LANDING)
+            }            
     });
 }
 
@@ -231,6 +274,7 @@ pub fn install()
         pitb_nair,
         pitb_throwlw,
         pitb_dashattack,
-        pitb_upair
+        pitb_upair,
+        pitb_fair
     );
 }   
