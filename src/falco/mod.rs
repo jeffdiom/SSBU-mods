@@ -4,6 +4,7 @@ use smash::lua2cpp::L2CFighterBase;
 use smash::lua2cpp::L2CFighterCommon;
 use acmd::{acmd, acmd_func};
 
+
 #[acmd_func(
     battle_object_category = BATTLE_OBJECT_CATEGORY_WEAPON, 
     battle_object_kind = WEAPON_KIND_FALCO_BLASTER_BULLET, 

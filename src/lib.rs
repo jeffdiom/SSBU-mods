@@ -30,11 +30,7 @@ mod fox;
 mod eflame;
 mod elight;
 mod pitb;
-mod custom;
-
-
-
-
+//mod custom;
 
 #[skyline::main(name = "acmd_test")]
 pub fn main() 
@@ -66,5 +62,5 @@ pub fn main()
     eflame::install();
     elight::install();
     pitb::install();
-    custom::install();
+    //custom::install();
 }

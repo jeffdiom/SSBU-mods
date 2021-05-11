@@ -1,5 +1,6 @@
 use smash::app::lua_bind::*;
 use smash::app::utility::get_kind;
+use smash::app::utility
 use smash::lua2cpp::{L2CFighterCommon, L2CFighterBase};
 use acmd;
 
