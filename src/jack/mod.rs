@@ -1127,7 +1127,7 @@ pub fn jack_specialairndown(fighter: &mut L2CFighterCommon) {
             {
                 if (WorkModule::is_flag(module_accessor,*FIGHTER_JACK_INSTANCE_WORK_ID_FLAG_DOYLE)==true)
                 {
-                    ATTACK(ID=0, Part=0, Bone=hash40("top"), Damage=4.0, Angle=270, KBG=80, FKB=0, BKB=20, Size=4.0, X=0.0, Y=0.0, Z=0.0, X2=0.0, Y2=-32.0, Z2=0.0, Hitlag=0.0, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_OFF, FacingRestrict=ATTACK_LR_CHECK_F, SetWeight=false, ShieldDamage=1, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=false, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_jack_bullet"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_JACK_SHOT, Type=ATTACK_REGION_OBJECT)
+                    ATTACK(ID=0, Part=0, Bone=hash40("top"), Damage=4.0, Angle=270, KBG=40, FKB=0, BKB=15, Size=4.0, X=0.0, Y=0.0, Z=0.0, X2=0.0, Y2=-32.0, Z2=0.0, Hitlag=0.0, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_OFF, FacingRestrict=ATTACK_LR_CHECK_F, SetWeight=false, ShieldDamage=1, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=false, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_jack_bullet"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_JACK_SHOT, Type=ATTACK_REGION_OBJECT)
                     ATTACK(ID=1, Part=0, Bone=hash40("top"), Damage=1.2, Angle=45, KBG=0, FKB=0, BKB=30, Size=6.0, X=0.0, Y=0.0, Z=0.0, X2=0.0, Y2=-60.0, Z2=-10.0, Hitlag=0.0, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_OFF, FacingRestrict=ATTACK_LR_CHECK_POS, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=false, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_jack_bullet"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_JACK_SHOT, Type=ATTACK_REGION_OBJECT)
                     ATTACK(ID=2, Part=0, Bone=hash40("top"), Damage=1.2, Angle=55, KBG=0, FKB=0, BKB=30, Size=6.0, X=0.0, Y=0.0, Z=0.0, X2=0.0, Y2=-60.0, Z2=0.0, Hitlag=0.0, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_OFF, FacingRestrict=ATTACK_LR_CHECK_POS, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=false, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_jack_bullet"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_JACK_SHOT, Type=ATTACK_REGION_OBJECT)
                     ATTACK(ID=3, Part=0, Bone=hash40("top"), Damage=1.2, Angle=45, KBG=0, FKB=0, BKB=30, Size=6.0, X=0.0, Y=0.0, Z=0.0, X2=0.0, Y2=-60.0, Z2=10.0, Hitlag=0.0, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_OFF, FacingRestrict=ATTACK_LR_CHECK_POS, SetWeight=false, ShieldDamage=0, Trip=0.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=false, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_jack_bullet"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_JACK_SHOT, Type=ATTACK_REGION_OBJECT)
@@ -1135,7 +1135,7 @@ pub fn jack_specialairndown(fighter: &mut L2CFighterCommon) {
                     sv_animcmd::FT_SHOOTING_ATTACK_GROUND_CHECK_NEW(1, 5, 4)
                     sv_animcmd::FT_SHOOTING_ATTACK_GROUND_CHECK_NEW_arg5(2, 5, 4, hash40("jack_gun_hit2"), hash40("se_jack_special_n02"))
                     sv_animcmd::FT_SHOOTING_ATTACK_GROUND_CHECK_NEW(3, 5, 4)
-                    AttackModule::set_add_reaction_frame(ID=0, Frames=2.0, Unk=false);
+                    AttackModule::set_add_reaction_frame(ID=0, Frames=5.0, Unk=false);
                     ControlModule::set_rumble(Hash40::new_raw(0x10f5122f08), 2, false, false)
                 }
                 else
@@ -1148,7 +1148,7 @@ pub fn jack_specialairndown(fighter: &mut L2CFighterCommon) {
                     sv_animcmd::FT_SHOOTING_ATTACK_GROUND_CHECK_NEW(1, 5, 4)
                     sv_animcmd::FT_SHOOTING_ATTACK_GROUND_CHECK_NEW_arg5(2, 5, 4, hash40("jack_gun_hit2"), hash40("se_jack_special_n02"))
                     sv_animcmd::FT_SHOOTING_ATTACK_GROUND_CHECK_NEW(3, 5, 4)
-                    AttackModule::set_add_reaction_frame(ID=0, Frames=2.0, Unk=false);
+                    AttackModule::set_add_reaction_frame(ID=0, Frames=5.0, Unk=false);
                     ControlModule::set_rumble(Hash40::new_raw(0x10f5122f08), 2, false, false)
                 }
             }
@@ -1170,7 +1170,7 @@ pub fn jack_specialairndown(fighter: &mut L2CFighterCommon) {
                     sv_animcmd::FT_SHOOTING_ATTACK_GROUND_CHECK_NEW(1, 5, 4)
                     sv_animcmd::FT_SHOOTING_ATTACK_GROUND_CHECK_NEW_arg5(2, 5, 4, hash40("jack_gun_hit2"), hash40("se_jack_special_n02"))
                     sv_animcmd::FT_SHOOTING_ATTACK_GROUND_CHECK_NEW(3, 5, 4)
-                    AttackModule::set_add_reaction_frame(ID=0, Frames=2.0, Unk=false);
+                    AttackModule::set_add_reaction_frame(ID=0, Frames=5.0, Unk=false);
                     ControlModule::set_rumble(Hash40::new_raw(0x10f5122f08), 2, false, false)
                 }
             }
@@ -1192,7 +1192,7 @@ pub fn jack_specialairndown(fighter: &mut L2CFighterCommon) {
                     sv_animcmd::FT_SHOOTING_ATTACK_GROUND_CHECK_NEW(1, 5, 4)
                     sv_animcmd::FT_SHOOTING_ATTACK_GROUND_CHECK_NEW_arg5(2, 5, 4, hash40("jack_gun_hit2"), hash40("se_jack_special_n02"))
                     sv_animcmd::FT_SHOOTING_ATTACK_GROUND_CHECK_NEW(3, 5, 4)
-                    AttackModule::set_add_reaction_frame(ID=0, Frames=2.0, Unk=false);
+                    AttackModule::set_add_reaction_frame(ID=0, Frames=5.0, Unk=false);
                     ControlModule::set_rumble(Hash40::new_raw(0x10f5122f08), 2, false, false)
                 }
             }
