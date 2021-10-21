@@ -280,6 +280,7 @@ pub fn install()
         master_throwlw,
         master_dtilt,
         master_dair,
-        master_uptilt
+        master_uptilt,
+        master_throwhi
     );
 }   
