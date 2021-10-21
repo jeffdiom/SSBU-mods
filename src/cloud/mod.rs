@@ -220,7 +220,7 @@ pub fn cloud_uptilt(fighter: &mut L2CFighterCommon) {
         frame(Frame=1)
         if(is_excute)
         {
-            MotionModule::set_rate(1.15)
+            MotionModule::set_rate(1.125)
         }
         frame(Frame=5)
         if(is_excute)
