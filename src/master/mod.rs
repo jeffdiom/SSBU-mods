@@ -244,7 +244,7 @@ pub fn master_uptilt(fighter: &mut L2CFighterCommon) {
     animcmd = "game_throwhi")]
 pub fn master_throwhi(fighter: &mut L2CFighterCommon) {
     acmd!
-    {(
+    ({
         if(is_excute)
         {
             ATTACK_ABS(Kind=FIGHTER_ATTACK_ABSOLUTE_KIND_THROW, ID=0, Damage=3.0, Angle=84, KBG=90, FKB=0, BKB=70, Hitlag=0.0, Unk=1.0, FacingRestrict=ATTACK_LR_CHECK_F, Unk=0.0, Unk=true, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_S, SFXType=COLLISION_SOUND_ATTR_NONE, Type=ATTACK_REGION_THROW)
@@ -265,11 +265,11 @@ pub fn master_throwhi(fighter: &mut L2CFighterCommon) {
             ATK_HIT_ABS(FIGHTER_ATTACK_ABSOLUTE_KIND_THROW, hash40("throw"), 
             WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_OBJECT), 
             WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_HIT_GROUP), 
-            WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_HIT_NO)),
+            WorkModule::get_int64(module_accessor, *FIGHTER_STATUS_THROW_WORK_INT_TARGET_HIT_NO))
             AttackModule::clear_all()
         }
 
-    )};
+    });
 }
 
 pub fn install() 
