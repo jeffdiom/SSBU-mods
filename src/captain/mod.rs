@@ -58,7 +58,8 @@ pub fn captain_dair(fighter: &mut L2CFighterCommon) {
         {
             ATTACK(ID=0, Part=0, Bone=hash40("top"), Damage=14.0, Angle=270, KBG=100, FKB=0, BKB=10, Size=6.64, X=0.0, Y=-5.2, Z=0.8, X2=0.0, Y2=0.0, Z2=0.0, Hitlag=1.0, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_POS, SetWeight=false, ShieldDamage=5, Trip=1.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_L, SFXType=COLLISION_SOUND_ATTR_KICK, Type=ATTACK_REGION_KICK)
             ATTACK(ID=1, Part=0, Bone=hash40("top"), Damage=16.6666666667, Angle=270, KBG=100, FKB=0, BKB=40, Size=5.86, X=0.0, Y=1.0, Z=0.8, X2=0.0, Y2=10.0, Z2=0.0, Hitlag=1.0, SDI=1.0, Clang_Rebound=ATTACK_SETOFF_KIND_ON, FacingRestrict=ATTACK_LR_CHECK_POS, SetWeight=false, ShieldDamage=5, Trip=1.0, Rehit=0, Reflectable=false, Absorbable=false, Flinchless=false, DisableHitlag=false, Direct_Hitbox=true, Ground_or_Air=COLLISION_SITUATION_MASK_GA, Hitbits=COLLISION_CATEGORY_MASK_ALL, CollisionPart=COLLISION_PART_MASK_ALL, FriendlyFire=false, Effect=hash40("collision_attr_normal"), SFXLevel=ATTACK_SOUND_LEVEL_L, SFXType=COLLISION_SOUND_ATTR_KICK, Type=ATTACK_REGION_KICK)
-            AttackModule::set_add_reaction_frame(ID=0, Frames=1.5, Unk=false);
+            AttackModule::set_add_reaction_frame(ID=0, Frames=2.5, Unk=false);
+            AttackModule::set_add_reaction_frame(ID=0, Frames=1.0, Unk=false);
         }
         wait(Frames=4)
         if(is_excute)
@@ -237,6 +238,8 @@ pub fn captain_uptilt(fighter: &mut L2CFighterCommon) {
         AttackModule::set_attack_height_all(smash::app::AttackHeight(*ATTACK_HEIGHT_HIGH), false)
         AttackModule::set_add_reaction_frame(ID=0, Frames=3.0, Unk=false);
         AttackModule::set_add_reaction_frame(ID=1, Frames=3.0, Unk=false);
+        AttackModule::set_add_reaction_frame(ID=2, Frames=3.0, Unk=false);
+        AttackModule::set_add_reaction_frame(ID=3, Frames=3.0, Unk=false);
         }
         frame(Frame=21)
         if(is_excute){
